@@ -2,40 +2,47 @@
 
 # テーブル設計
 
-## users テーブル
+## purchase_management テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| family_name        | string | null: false |
-| first_name         | string | null: false |
-| family_name_kana   | string | null: false |
-| birth_day          | string | null: false |
-
-
+| Column             | Type       | Options                        |
+| ------------------ | ------     | ------------------------------ |
+| user_id            | references | null: false, foreign_key: true |
+| product_id         | references | null: false, foreign_key: true |
 
 ### Association
 
 - has_many : products
 - has_one : card
-- has_one : destination
+
+## users テーブル
+
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| family_name        | string | null: false               |
+| first_name         | string | null: false               |
+| family_name_kana   | string | null: false               |
+| family_name_kana   | string | null: false               |
+| birth_day          | date   | null: false               |
+
+### Association
+
+- has_many : destinations
+- has_one : 
 
 ## destination テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| famity_name        | string | null: false |
-| first_name         | string | null: false |
-| famity_name_kana   | string | null: false |
-| first_name_kana    | string | null: false |
-| post_code          | string | null: false |
-| prefecture         | string | null: false |
-| city               | string | null: false |
-| address            | string | null: false |
-| build_name         | string | null: false |
-| phone_numbeer      | string | null: false |
+| Column             | Type       | Options                        |
+| ------------------ | ------     | ----------------------------   |
+| post_code          | string     | null: false                    |
+| prefecture         | string     | null: false                    |
+| municipality       | string     | null: false                    |
+| address            | string     | null: false                    |
+| build_name         | string     | null: false                    |
+| phone_number       | string     | null: false                    |
+| user_id            | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -45,33 +52,22 @@
 - belong_to : destination
 
 
+## product テーブル
 
-## card テーブル
-
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| user       | references | null: false, foreign_key: true |
-| customer   | references | null: false, foreign_key: true |
-| user       | references | null: false, foreign_key: true |
-
-
-### Association
-
-- belong_to : user
-- belong_to : customer
-
-
-## Product テーブル
-
-| Column      | Type       | Options     |
-| ----------- | ---------- | ----------- |
-| name        | string     | null: false |
-| price       | string     | null: false |
-| description | string     | null: false |
-| status      | string     | null: false |
-| size        | string     | null: false |
-| cost        | string     | null: false |
-| day         | string     | null: false |
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | -----------                    |
+| product_name        | string     | null: false                    |
+| product_description | text       | null: false                    |
+| product_price       | integer    | null: false                    |
+| status_id           | integer    | null: false                    |
+| delivery_charge_id  | integer    | null: false                    |
+| product_area_id     | integer    | null: false                    |
+| delivery_date_id    | integer    | null: false                    |
+| category_id         | integer    | null: false                    |
+| size_id             | integer    | null: false                    |
+| cost_id             | integer    | null: false                    |
+| day_id              | integer    | null: false                    |
+| user_id             | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -80,36 +76,4 @@
 - has_many : images
 - has_many : brand
 
-## brand テーブル
 
-| Column      | Type       | Options        |
-| ----------- | ---------- | -------------- |
-| name        | string     | null: false    |
-
-### Association
-
-- belong_to : product
-
-## images テーブル
-
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| images        | text       | null: false                    |
-| text          | text       | null: false                    |
-| user          | references | null: false, foreign_key: true |
-
-### Association
-
-- belong_to : product
-
-
-## category テーブル
-
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| name          | text       | null: false                    |
-| ancestry      | text       | null: false                    |
-
-### Association
-
-- belong_to : product
