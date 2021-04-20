@@ -13,7 +13,7 @@
 
 - belongs_to : user
 - belongs_to : product
-- belongs_to : destinations
+- has_one : destinations
 
 
 ## users テーブル
@@ -32,7 +32,7 @@
 ### Association
 
 - has_many : products
-- has_many : purchase_management
+- has_many : purchase_managements
 
 ## destinations テーブル
 
@@ -49,7 +49,7 @@
 
 ### Association
 
-- belongs_to : user
+- has_one  : purchase_managements
 
 
 ## products テーブル
@@ -69,6 +69,7 @@
 ### Association
 
 - has_one : purchase_management
+- belongs_to : user
 
 
 
