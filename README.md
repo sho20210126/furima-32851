@@ -6,8 +6,8 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ------     | ------------------------------ |
-| user_id            | references | null: false, foreign_key: true |
-| product_id         | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
+| product            | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -32,7 +32,7 @@
 ### Association
 
 - has_many : products
-- has_one : purchase_management
+- has_many : purchase_management
 
 ## destinations テーブル
 
@@ -54,17 +54,17 @@
 
 ## products テーブル
 
-| Column              | Type       | Options                        |
-| ------------------- | ---------- | -----------------------        |
-| product_name        | string     | null: false                    |
-| product_description | text       | null: false                    |
-| product_price       | integer    | null: false                    |
-| product_status_id   | integer    | null: false                    |
-| delivery_cost       | integer    | null: false                    |
-| product_area        | integer    | null: false                    |
-| delivery_day        | integer    | null: false                    |
-| delivery_category   | integer    | null: false                    |
-| user                | references | null: false, foreign_key: true |
+| Column               | Type       | Options                        |
+| -------------------  | ---------- | -----------------------        |
+| product_name         | string     | null: false                    |
+| product_description  | text       | null: false                    |
+| product_price        | integer    | null: false                    |
+| product_status_id    | integer    | null: false                    |
+| delivery_cost_id     | integer    | null: false                    |
+| product_area_id      | integer    | null: false                    |
+| delivery_day_id      | integer    | null: false                    |
+| delivery_category_id | integer    | null: false                    |
+| user                 | references | null: false, foreign_key: true |
 
 ### Association
 
