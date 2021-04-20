@@ -1,24 +1,75 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計
 
-Things you may want to cover:
+## purchase_managements テーブル
 
-* Ruby version
+| Column             | Type       | Options                        |
+| ------------------ | ------     | ------------------------------ |
+| user               | references | null: false, foreign_key: true |
+| product            | references | null: false, foreign_key: true |
 
-* System dependencies
+### Association
 
-* Configuration
+- belongs_to : user
+- belongs_to : product
+- has_one : destination
 
-* Database creation
 
-* Database initialization
+## users テーブル
 
-* How to run the test suite
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| family_name        | string | null: false               |
+| first_name         | string | null: false               |
+| family_name_kana   | string | null: false               |
+| family_name_kana   | string | null: false               |
+| birth_day          | date   | null: false               |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
 
-* Deployment instructions
+- has_many : products
+- has_many : purchase_managements
 
-* ...
+## destinations テーブル
+
+| Column              | Type       | Options                        |
+| ------------------  | ---------- | ----------------------------   |
+| post_code           | string     | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| municipality        | string     | null: false                    |
+| address             | string     | null: false                    |
+| build_name          | string     |                                |
+| phone_number        | string     | null: false                    |
+| purchase_management | references | null: false, foreign_key: true |
+
+
+### Association
+
+- belongs_to : purchase_management
+
+
+## products テーブル
+
+| Column               | Type       | Options                        |
+| -------------------  | ---------- | -----------------------        |
+| product_name         | string     | null: false                    |
+| product_description  | text       | null: false                    |
+| product_price        | integer    | null: false                    |
+| product_status_id    | integer    | null: false                    |
+| delivery_cost_id     | integer    | null: false                    |
+| prefecture_id        | integer    | null: false                    |
+| delivery_day_id      | integer    | null: false                    |
+| delivery_category_id | integer    | null: false                    |
+| user                 | references | null: false, foreign_key: true |
+
+### Association
+
+- has_one : purchase_management
+- belongs_to : user
+
+
+
