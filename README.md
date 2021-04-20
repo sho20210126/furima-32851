@@ -49,7 +49,7 @@
 
 ### Association
 
-- has_one  : purchase_management
+- belongs_to : purchase_management
 
 
 ## products テーブル
@@ -61,7 +61,7 @@
 | product_price        | integer    | null: false                    |
 | product_status_id    | integer    | null: false                    |
 | delivery_cost_id     | integer    | null: false                    |
-| product_area_id      | integer    | null: false                    |
+| prefecture_id        | integer    | null: false                    |
 | delivery_day_id      | integer    | null: false                    |
 | delivery_category_id | integer    | null: false                    |
 | user                 | references | null: false, foreign_key: true |
