@@ -1,17 +1,11 @@
 class ProductsController < ApplicationController
-
+  before_action :authenticate_user!, only: [:new]
   def index
     @products = Product.all
   end
 
-  before_action :authenticate_user!
   def new
-    #if user_signed_in? 
     @products = Product.new
-    #else
-      #edirect_to root_path
-      #redirect_to action: :index
-    #end
   end
 
   def create
