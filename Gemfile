@@ -69,3 +69,6 @@ gem 'pry-rails'
 gem 'rubocop'
 gem 'rubocop-rails'
 
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
+
