@@ -1,16 +1,17 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
-  def index
-    @products = Product.all
-  end
+  before_action :authenticate_user!, only: [:new,:create]
+
+  #def index
+    #@products = Product.all
+  #end
 
   def new
-    @products = Product.new
+    @product = Product.new
   end
 
   def create
-    @products = Product.new(product_params)
-    if @products.save
+    @product = Product.new(product_params)
+    if @product.save
        redirect_to root_path
     else
        render :new
