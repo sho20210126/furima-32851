@@ -40,14 +40,8 @@ class PurchaseManagementsController < ApplicationController
   end
 
   def move_to_index
-    if current_user.id == @product.user_id
+    if current_user.id == @product.user_id or @product.purchase_management.present?
       redirect_to root_path
-
-    elsif @product.purchase_management.present?
-      redirect_to root_path
-
-    else
-
     end
   end
 
