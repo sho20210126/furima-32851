@@ -11,6 +11,11 @@ RSpec.describe FormObject, type: :model do
         it "必須入力項目が存在すれば登録できる" do
           expect(@form_object).to be_valid
         end
+
+        it '建物名が抜けていても登録できること' do
+          @form_object.build_name = ''
+          expect(@form_object).to be_valid
+          end
       end
 
       context '購入登録がうまくいかないとき' do
@@ -66,6 +71,24 @@ RSpec.describe FormObject, type: :model do
         @form_object.phone_number = '000-1111-2222'
         @form_object.valid?
         expect(@form_object.errors.full_messages).to include("Phone number is invalid")
+        end
+
+        it '電話番号が英数字混合では登録できないこと' do
+          @form_object.phone_number = '0001111222A'
+          @form_object.valid?
+          expect(@form_object.errors.full_messages).to include("Phone number is invalid")
+        end
+
+        it 'user_idが空では登録できないこと' do
+          @form_object.user_id = ''
+          @form_object.valid?
+          expect(@form_object.errors.full_messages).to include("User can't be blank")
+        end
+
+        it 'product_idが空では登録できないこと' do
+          @form_object.product_id = ''
+          @form_object.valid?
+          expect(@form_object.errors.full_messages).to include("Product can't be blank")
         end
 
         it 'クレジットカード情報が空では登録できないこと' do

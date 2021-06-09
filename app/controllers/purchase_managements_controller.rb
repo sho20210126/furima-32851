@@ -1,13 +1,13 @@
 class PurchaseManagementsController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :move_to_index, only: [:index, :create]
+  before_action :set_product, only: [:index, :create]
 
   def index
     @form_object = FormObject.new
-    @product = Product.find(params[:product_id])
   end
 
   def create
-    @product = Product.find(params[:product_id])
     @form_object = FormObject.new(order_params)
     if @form_object.valid?
       pay_product
@@ -35,20 +35,19 @@ class PurchaseManagementsController < ApplicationController
     )
   end
 
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
   def move_to_index
     @product = Product.find(params[:product_id])
-    if user_signed_in?
-      if current_user.id == @product.user_id
-        redirect_to root_path
+    if current_user.id == @product.user_id
+      redirect_to root_path
 
-      elsif @product.purchase_management.present?
-        redirect_to root_path
+    elsif @product.purchase_management.present?
+      redirect_to root_path
 
-      else
-
-      end
-
-    else redirect_to root_path
+    else
 
     end
   end
