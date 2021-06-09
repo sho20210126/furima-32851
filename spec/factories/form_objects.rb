@@ -1,4 +1,5 @@
 FactoryBot.define do
+
   factory :form_object do
     post_code {'123-4567'}
     prefecture_id {1}
@@ -7,7 +8,5 @@ FactoryBot.define do
     phone_number{'00011112222'}
     token{'tok_c38aaf6f52d61db1be8e780f6886'}
     build_name {'アパート'}
-    user_id {1}
-    product_id {1}
   end
 end

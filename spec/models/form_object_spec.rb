@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe FormObject, type: :model do
   describe '#create' do
     before do
-      @form_object = FactoryBot.build(:form_object)
+      @user = FactoryBot.create(:user)
+      @product = FactoryBot.create(:product)
+     sleep(0.5)
+      @form_object = FactoryBot.build(:form_object, user_id: @user.id, product_id: @product.id)
     end
 
     describe '商品購入機能' do
