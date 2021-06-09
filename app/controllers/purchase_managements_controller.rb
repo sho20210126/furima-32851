@@ -36,7 +36,7 @@ class PurchaseManagementsController < ApplicationController
   end
 
   def set_product
-    @product = Product.find(params[:id])
+    @product = Product.find(params[:product_id])
   end
 
   def move_to_index
